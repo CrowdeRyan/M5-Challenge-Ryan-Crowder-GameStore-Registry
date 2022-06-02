@@ -1,16 +1,14 @@
-package com.company.gamestorecatalog.model;
+package com.company.gamestoreinvoice.util;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-@Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "tshirt")
-public class TShirt implements Serializable {
+public class Tshirt {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,14 +71,14 @@ public class TShirt implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof TShirt)) return false;
-        TShirt tShirt = (TShirt) o;
-        return getId() == tShirt.getId() &&
-                getQuantity() == tShirt.getQuantity() &&
-                Objects.equals(getSize(), tShirt.getSize()) &&
-                Objects.equals(getColor(), tShirt.getColor()) &&
-                Objects.equals(getDescription(), tShirt.getDescription()) &&
-                Objects.equals(getPrice(), tShirt.getPrice());
+        if (!(o instanceof Tshirt)) return false;
+        Tshirt tshirt = (Tshirt) o;
+        return getId() == tshirt.getId() &&
+                getQuantity() == tshirt.getQuantity() &&
+                Objects.equals(getSize(), tshirt.getSize()) &&
+                Objects.equals(getColor(), tshirt.getColor()) &&
+                Objects.equals(getDescription(), tshirt.getDescription()) &&
+                Objects.equals(getPrice(), tshirt.getPrice());
     }
 
     @Override

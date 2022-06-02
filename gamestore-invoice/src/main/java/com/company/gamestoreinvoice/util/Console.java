@@ -1,17 +1,14 @@
-package com.company.gamestorecatalog.model;
+package com.company.gamestoreinvoice.util;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-@Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "console")
-public class Console implements Serializable {
-
+public class Console {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "console_id")
