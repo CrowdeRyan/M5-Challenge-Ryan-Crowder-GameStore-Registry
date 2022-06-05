@@ -1,9 +1,12 @@
 package com.company.gamestoreinvoice.service;
 
+import com.company.gamestoreinvoice.model.*;
+import com.company.gamestoreinvoice.repository.*;
 import com.company.gamestoreinvoice.util.Catalog;
-import com.company.gamestoreinvoice.util.Console;
-import com.company.gamestoreinvoice.util.Game;
-import com.company.gamestoreinvoice.util.Tshirt;
+import com.company.gamestoreinvoice.viewModel.ConsoleViewModel;
+import com.company.gamestoreinvoice.viewModel.GameViewModel;
+import com.company.gamestoreinvoice.viewModel.InvoiceViewModel;
+import com.company.gamestoreinvoice.viewModel.TshirtViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,11 +15,6 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import com.company.gamestoreinvoice.repository.*;
-import com.company.gamestoreinvoice.model.*;
-import com.company.gamestoreinvoice.viewModel.InvoiceViewModel;
-
 
 @Component
 public class InvoiceServiceLayer {
@@ -27,25 +25,18 @@ public class InvoiceServiceLayer {
     private final String CONSOLE_ITEM_TYPE = "Console";
     private final String TSHIRT_ITEM_TYPE = "T-Shirt";
 
-
-
-    @Autowired
-    Catalog catalog;
-
-
-
     InvoiceRepository invoiceRepo;
     TaxRepository taxRepo;
     ProcessingFeeRepository processingFeeRepo;
+    Catalog serviceClient;
 
     @Autowired
-    public InvoiceServiceLayer(InvoiceRepository invoiceRepo, TaxRepository taxRepo, ProcessingFeeRepository processingFeeRepo) {
+    public InvoiceServiceLayer(InvoiceRepository invoiceRepo, TaxRepository taxRepo, ProcessingFeeRepository processingFeeRepo, Catalog serviceClient) {
         this.invoiceRepo = invoiceRepo;
         this.taxRepo = taxRepo;
         this.processingFeeRepo = processingFeeRepo;
+        this.serviceClient = serviceClient;
     }
-
-
 
     public InvoiceViewModel createInvoice(InvoiceViewModel invoiceViewModel) {
 
@@ -75,8 +66,8 @@ public class InvoiceServiceLayer {
         //Checks the item type and get the correct unit price
         //Check if we have enough quantity
         if (invoiceViewModel.getItemType().equals(CONSOLE_ITEM_TYPE)) {
-            Console tempCon = null;
-            Optional<Console> returnVal = catalog.getConsoleById(invoiceViewModel.getItemId());
+            ConsoleViewModel tempCon = null;
+            Optional<ConsoleViewModel> returnVal = Optional.ofNullable(serviceClient.getConsole(invoiceViewModel.getItemId()));
 
             if (returnVal.isPresent()) {
                 tempCon = returnVal.get();
@@ -91,8 +82,8 @@ public class InvoiceServiceLayer {
             invoice.setUnitPrice(tempCon.getPrice());
 
         } else if (invoiceViewModel.getItemType().equals(GAME_ITEM_TYPE)) {
-            Game tempGame = null;
-            Optional<Game> returnVal = catalog.getGameById(invoiceViewModel.getItemId());
+            GameViewModel tempGame = null;
+            Optional<GameViewModel> returnVal = Optional.ofNullable(serviceClient.getGame(invoiceViewModel.getItemId()));
 
             if (returnVal.isPresent()) {
                 tempGame = returnVal.get();
@@ -106,8 +97,8 @@ public class InvoiceServiceLayer {
             invoice.setUnitPrice(tempGame.getPrice());
 
         } else if (invoiceViewModel.getItemType().equals(TSHIRT_ITEM_TYPE)) {
-            Tshirt tempTShirt = null;
-            Optional<Tshirt> returnVal = catalog.getTshirtById(invoiceViewModel.getItemId());
+            TshirtViewModel tempTShirt = null;
+            Optional<TshirtViewModel> returnVal = Optional.ofNullable(serviceClient.getTShirt(invoiceViewModel.getItemId()));
 
             if (returnVal.isPresent()) {
                 tempTShirt = returnVal.get();

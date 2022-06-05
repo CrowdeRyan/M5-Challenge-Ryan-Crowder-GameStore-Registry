@@ -6,10 +6,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class GamestoreInvoiceApplication {
+public class GameStoreInvoiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GamestoreInvoiceApplication.class, args);
+		SpringApplication.run(GameStoreInvoiceApplication.class, args);
 	}
 
 }
