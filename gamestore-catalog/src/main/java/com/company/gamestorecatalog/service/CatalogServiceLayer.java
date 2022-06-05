@@ -1,38 +1,38 @@
+
 package com.company.gamestorecatalog.service;
 
-
-import com.company.gamestorecatalog.model.Console;
-import com.company.gamestorecatalog.model.Game;
-import com.company.gamestorecatalog.model.TShirt;
+import com.company.gamestorecatalog.model.*;
+import com.company.gamestorecatalog.repository.*;
+import com.company.gamestorecatalog.viewModel.ConsoleViewModel;
+import com.company.gamestorecatalog.viewModel.GameViewModel;
+import com.company.gamestorecatalog.viewModel.TShirtViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.company.gamestorecatalog.repository.*;
-
-import com.company.gamestorecatalog.viewModel.ConsoleViewModel;
-import com.company.gamestorecatalog.viewModel.GameViewModel;
-import com.company.gamestorecatalog.viewModel.TShirtViewModel;
-
 @Component
 public class CatalogServiceLayer {
+
+    private final BigDecimal PROCESSING_FEE = new BigDecimal("15.49");
+    private final BigDecimal MAX_INVOICE_TOTAL = new BigDecimal("999.99");
+    private final String GAME_ITEM_TYPE = "Game";
+    private final String CONSOLE_ITEM_TYPE = "Console";
+    private final String TSHIRT_ITEM_TYPE = "T-Shirt";
 
     GameRepository gameRepo;
     ConsoleRepository consoleRepo;
     TShirtRepository tShirtRepo;
-
 
     @Autowired
     public CatalogServiceLayer(GameRepository gameRepo, ConsoleRepository consoleRepo, TShirtRepository tShirtRepo) {
         this.gameRepo = gameRepo;
         this.consoleRepo = consoleRepo;
         this.tShirtRepo = tShirtRepo;
-
     }
-
 
     //Game service layer...
     public GameViewModel createGame(GameViewModel gameViewModel) {
@@ -333,5 +333,4 @@ public class CatalogServiceLayer {
 
         return tShirtViewModel;
     }
-
 }

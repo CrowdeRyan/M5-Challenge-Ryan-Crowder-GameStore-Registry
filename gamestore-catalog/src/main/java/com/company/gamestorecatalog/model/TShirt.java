@@ -9,12 +9,12 @@ import java.util.Objects;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "tshirt")
+@Table(name = "t_shirt")
 public class TShirt implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "tshirt_id")
+    @Column(name = "t_shirt_id")
     private long id;
     private String size;
     private String color;
@@ -86,5 +86,17 @@ public class TShirt implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getSize(), getColor(), getDescription(), getPrice(), getQuantity());
+    }
+
+    @Override
+    public String toString() {
+        return "TShirt{" +
+                "id=" + id +
+                ", size='" + size + '\'' +
+                ", color='" + color + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                '}';
     }
 }

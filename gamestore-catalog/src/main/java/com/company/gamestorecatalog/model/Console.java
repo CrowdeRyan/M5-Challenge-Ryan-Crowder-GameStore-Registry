@@ -20,7 +20,7 @@ public class Console implements Serializable {
     private String manufacturer;
     private String memoryAmount;
     private String processor;
-    private java.math.BigDecimal price;
+    private BigDecimal price;
     private long quantity;
 
     public long getId() {
@@ -96,5 +96,18 @@ public class Console implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getModel(), getManufacturer(), getMemoryAmount(), getProcessor(), getPrice(), getQuantity());
+    }
+
+    @Override
+    public String toString() {
+        return "Console{" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", memoryAmount='" + memoryAmount + '\'' +
+                ", processor='" + processor + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                '}';
     }
 }

@@ -1,7 +1,7 @@
-package com.company.gamestorecatalog.controllers;
+package com.company.gamestorecatalog.controller;
 
+import com.company.gamestorecatalog.service.CatalogServiceLayer;
 import com.company.gamestorecatalog.viewModel.GameViewModel;
-import com.company.gamestorecatalog.service.GameStoreServiceLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ import java.util.List;
 public class GameController {
 
     @Autowired
-    GameStoreServiceLayer service;
+    CatalogServiceLayer service;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

@@ -96,4 +96,17 @@ public class Game {
     public int hashCode() {
         return Objects.hash(getId(), getTitle(), getEsrbRating(), getDescription(), getPrice(), getStudio(), getQuantity());
     }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", esrbRating='" + esrbRating + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", studio='" + studio + '\'' +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
