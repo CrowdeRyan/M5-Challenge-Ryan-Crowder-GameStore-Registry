@@ -11,7 +11,10 @@ import com.company.gamestoreinvoice.viewModel.TshirtViewModel;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.springframework.test.context.junit4.SpringRunner;
+import static org.mockito.Mockito.doReturn;
+
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -19,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
 
 @RunWith(SpringRunner.class)
 public class InvoiceServiceLayerTest {
